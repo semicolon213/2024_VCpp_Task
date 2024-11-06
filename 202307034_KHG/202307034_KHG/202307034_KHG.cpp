@@ -1,4 +1,13 @@
-﻿// 202307034_KHG.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿/**
+ * @brief               2024년 2학기 VC++ 기말 대체 과제를 위한 프로젝트
+ * @details            뱀파이어 서바이벌에서 착안한 게임 프로젝트
+ * @author            202407034 김형균(Git : semicolon213)
+ * @date                2024-11-06
+ */
+
+
+
+// 202307034_KHG.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "framework.h"
@@ -121,10 +130,69 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
+
+int left = 0, top = 0, right = 50, bottom = 50;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+
+    case WM_PAINT:
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+        // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+        HBRUSH playerBrush = CreateSolidBrush(RGB(0, 0, 255));
+        RECT playerRect = {
+            left,top,right,bottom
+        };
+        FillRect(hdc, &playerRect, playerBrush);
+        DeleteObject(playerBrush);
+        EndPaint(hWnd, &ps);
+    }
+    break;
+
+    case WM_ACTIVATEAPP :                   ///윈도우 활성화 시 키 폴링, 비활성화 시 폴링 타이머 제거
+	    {
+        if (wParam)
+            SetTimer(hWnd, 0, 50, NULL);
+        else
+            KillTimer(hWnd, 0);
+	    }
+        break;
+    case WM_TIMER:
+        ///0x8000 : GetKeyState의 반환 값의 최상위 비트 - 설정되어있을 시 해당 키가 눌려져 있음
+        if(GetKeyState(VK_LEFT) & 0x8000)
+        {
+            left -= 5;
+            right -= 5;
+        }
+        if(GetKeyState(VK_RIGHT) & 0x8000)
+        {
+            left += 5;
+            right += 5;
+        }
+        if(GetKeyState(VK_UP)& 0x8000)
+        {
+            top -= 5;
+            bottom -= 5;
+        }
+        if(GetKeyState(VK_DOWN) & 0x8000)
+        {
+            top += 5;
+            bottom += 5;
+        }
+        if(GetKeyState(VK_SPACE) & 0x8000)
+        {
+	        
+        }
+        if(GetKeyState(VK_ESCAPE) & 0x8000)
+        {
+	        
+        }
+        InvalidateRect(hWnd, NULL, TRUE);
+        break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -142,14 +210,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
-    case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            EndPaint(hWnd, &ps);
-        }
-        break;
+    
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

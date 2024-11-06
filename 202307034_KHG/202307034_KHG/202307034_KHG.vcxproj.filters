@@ -27,6 +27,9 @@
     <ClInclude Include="202307034_KHG.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="202307034_KHG.cpp">

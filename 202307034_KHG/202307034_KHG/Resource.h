@@ -18,6 +18,13 @@
 #endif
 // 다음은 새 개체에 사용할 기본값입니다.
 //
+
+/// 사용자 지정 상수값
+#define SCREEN_WIDTH = 800
+#define SCREEN_HEIGHT = 600
+#define MAP_WIDTH = 2400
+#define MAP_HEIGHT = 1800
+
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 
