@@ -5,9 +5,9 @@
 
 struct GameObject
 {
-	float x, y;
+	double x, y;
 	SIZE objectSize;
-	float speed;
+	double speed;
 	bool isActive;
 	int health;
 };
@@ -30,7 +30,7 @@ struct Item
 enum class GameState
 {
 	STARTSCREEN,
-	COUNTDONW,
+	COUNTDOWN,
 	PLAY,
 	GAMEOVER
 };
