@@ -16,16 +16,16 @@
 4. chrono 라이브러리를 이용하여 게임 시간 측정<br>
 
 ## 게임 화면
-게임 초기 화면
+게임 초기 화면<br>
 ![start](https://github.com/user-attachments/assets/e476d599-2876-4ede-b3cf-f974db25112d)
 <br><br>
-카운트 다운
+카운트 다운<br>
 ![countdown](https://github.com/user-attachments/assets/16987402-1007-4c9c-9165-c6c287908617)
 <br><br>
-플레이 화면
+플레이 화면<br>
 ![play](https://github.com/user-attachments/assets/c91fdcd7-6c26-4f90-9df7-00b3b19ccc96)
 <br><br>
-게임 오버 화면
+게임 오버 화면<br>
 ![gameover](https://github.com/user-attachments/assets/728b7ea6-9751-4bea-a3e9-d000cfe53a00)
 
 ## 참고자료
