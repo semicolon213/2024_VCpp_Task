@@ -1,38 +1,34 @@
 ﻿#pragma once
 #include <vector>
-
-#include "framework.h"
-
-struct GameObject
-{
-	double x, y;
-	SIZE objectSize;
-	double speed;
-	bool isActive;
-	int health;
-};
+#include <chrono>
 
 enum class ItemType
 {
-	DAMAGEUP,
-	MULTISHOT,
-	HEAL
-};
-
-struct Item
-{
-	float x, y;
-	SIZE itemSize;
-	bool isActive;
-	ItemType type;
+    DAMAGEUP,
+    FIRERATE,
+    HEAL
 };
 
 enum class GameState
 {
-	STARTSCREEN,
-	COUNTDOWN,
-	PLAY,
-	GAMEOVER
+    STARTSCREEN,
+    COUNTDOWN,
+    PLAY,
+    GAMEOVER
 };
 
+struct GameObject {
+    double x, y;
+    double speed;
+    bool isActive;
+    int health;
+    double direction;
+    std::chrono::steady_clock::time_point invincibleUntil;
+    bool isInvincible;
+};
 
+struct Item {
+    double x, y;
+    bool isActive;
+    ItemType type;
+};

@@ -1,5 +1,4 @@
-#pragma once
-
+ï»¿#pragma once
 
 #include "framework.h"
 #include <vector>
@@ -11,33 +10,48 @@
 #include "resource.h"
 #include "Struct.h"
 
-/// °ÔÀÓ ¿ÀºêÁ§Æ® ¼±¾ğ
+/// ê²Œì„ ì˜¤ë¸Œì íŠ¸ ì„ ì–¸
 GameObject player;
-std::vector<GameObject> enemies;				///Àû »ı¼º Á¤º¸ º¤ÅÍ
-std::vector<GameObject> bullets;				///ÃÑ¾Ë Á¤º¸ º¤ÅÍ
-std::vector<GameObject> obstacles;			///Àå¾Ö¹° Á¤º¸ º¤ÅÍ
-std::vector<Item> items;								///ÇÊµå ¾ÆÀÌÅÛ Á¤º¸ º¤ÅÍ
+std::vector<GameObject> enemies;             ///ì  ìƒì„± ì •ë³´ ë²¡í„°
+std::vector<GameObject> bullets;             ///ì´ì•Œ ì •ë³´ ë²¡í„°
+std::vector<GameObject> obstacles;           ///ì¥ì• ë¬¼ ì •ë³´ ë²¡í„°
+std::vector<Item> items;                     ///í•„ë“œ ì•„ì´í…œ ì •ë³´ ë²¡í„°
 
 int score = 0;
 
-//Ä«¸Ş¶ó °ü·Ã º¯¼ö
-float cameraX, cameraY;
+//ì¹´ë©”ë¼ ê´€ë ¨ ë³€ìˆ˜
+double cameraX, cameraY;
 
 GameState gameState = GameState::STARTSCREEN;
 std::chrono::steady_clock::time_point gameStartTime;
-int damage = 1;
-int bulletCnt = 1;
+double damage = 1.0;
+int enemyHealth = 1;
+double bulletFireRate = 1.0;
 int playerHealth = 10;
 int startCntSec = 3;
 std::chrono::steady_clock::time_point countdownStartTime;
+double difficultyMultiplier = 1.0f;
 
+HWND mainhWnd;
+
+bool enemySpawnMax = false;
+
+void drawGame(HDC);
 void updateGame();
 void spawnEnemy();
-void shootBullet();
 void updateCamera();
 void initializeObstacles();
 void spawnItem();
-bool checkCollision(double, double, LONG, LONG, double, double, LONG, LONG);
+bool checkCollision(double, double, double, double, double, double, double, double);
 void applyItemEffect(ItemType type);
 void startGame();
 void ResetGame();
+void shootBulletInAllDirections();
+void makePlayerInvincible();
+bool isPlayerInvincible();
+void updateDifficulty();
+bool checkCollisionWithObstacles(double, double, double, double);
+void handleEnemyCollisions(GameObject&);
+void updateEnemyPosition(GameObject&);
+void updateBullets();
+void checkPlayerEnemyCollision();
